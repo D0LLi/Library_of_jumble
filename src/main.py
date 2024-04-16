@@ -2,8 +2,8 @@
 # A project similar to library of babel, but with english words.
 # Github: https://www.github.com/lewisevans2007/library_of_jumble
 
-import random
 import os
+import secrets
 
 
 words = open("src/words.txt", "r").read().split("\n")
@@ -12,49 +12,49 @@ def generate_book():
     book = ""
 
     title = ""
-    for i in range(random.randint(1, 4)):
-        title += random.choice(words) + " "
+    for i in range(secrets.SystemRandom().randint(1, 4)):
+        title += secrets.choice(words) + " "
     title = title[:-1]
 
     description = ""
-    for i in range(random.randint(1, 40)):
-        description += random.choice(words) + " "
+    for i in range(secrets.SystemRandom().randint(1, 40)):
+        description += secrets.choice(words) + " "
     description = description[:-1] + "."
 
-    max_pages = random.randint(1, 1000)
+    max_pages = secrets.SystemRandom().randint(1, 1000)
     pages = []
     for i in range(max_pages):
         page = ""
         capitalise_next = True
-        for i in range(random.randint(100, 400)):
+        for i in range(secrets.SystemRandom().randint(100, 400)):
             if capitalise_next:
-                page += random.choice(words).capitalize() + " "
+                page += secrets.choice(words).capitalize() + " "
                 capitalise_next = False
             else:
-                page += random.choice(words) + " "
+                page += secrets.choice(words) + " "
 
-            if random.randint(1, 12) == 1:
+            if secrets.SystemRandom().randint(1, 12) == 1:
                 page = page[:-1] # Remove the space
                 page += ". "
                 capitalise_next = True
 
-            elif random.randint(1, 24) == 1:
+            elif secrets.SystemRandom().randint(1, 24) == 1:
                 page = page[:-1]
                 page += ", "
 
-            elif random.randint(1, 40) == 1:
+            elif secrets.SystemRandom().randint(1, 40) == 1:
                 page = page[:-1]
                 page += "? "
                 capitalise_next = True
-            elif random.randint(1, 40) == 1:
+            elif secrets.SystemRandom().randint(1, 40) == 1:
                 page = page[:-1]    
                 page += "! "
                 capitalise_next = True
-            elif random.randint(1, 40) == 1:
+            elif secrets.SystemRandom().randint(1, 40) == 1:
                 page = page[:-1]
                 page += "; "
                 capitalise_next = True
-            elif random.randint(1, 80) == 1:
+            elif secrets.SystemRandom().randint(1, 80) == 1:
                 page = page[:-1]
                 page += "\n\n"
                 capitalise_next = True
@@ -68,19 +68,19 @@ def generate_book():
     return book, title
 
 while True:
-    floor = random.randint(1, 5)
+    floor = secrets.SystemRandom().randint(1, 5)
     try:
         os.mkdir("data/" + str(floor))
     except:
         pass
 
-    row = random.randint(1, 10)
+    row = secrets.SystemRandom().randint(1, 10)
     try:
         os.mkdir("data/" + str(floor) + "/" + str(row))
     except:
         pass
 
-    shelf = random.randint(1, 10)
+    shelf = secrets.SystemRandom().randint(1, 10)
     try:
         os.mkdir("data/" + str(floor) + "/" + str(row) + "/" + str(shelf))
     except:
